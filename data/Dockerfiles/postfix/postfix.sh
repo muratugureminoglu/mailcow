@@ -5,7 +5,7 @@ trap "postfix stop" EXIT
 [[ ! -d /opt/postfix/conf/sql/ ]] && mkdir -p /opt/postfix/conf/sql/
 
 # Wait for MySQL to warm-up
-while ! mariadb-admin status --ssl=false -h${DBHOST} -u${DBUSER} -p${DBPASS} --silent; do
+while ! mariadb-admin status --ssl=false -h${DBHOST} -uroot -p${DBROOT} --silent; do
   echo "Waiting for database to come up..."
   sleep 2
 done
